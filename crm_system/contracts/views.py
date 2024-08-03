@@ -5,45 +5,39 @@ from django.urls import reverse_lazy
 from .forms import ContractForm
 
 
-class ContractCreateView(PermissionRequiredMixin, CreateView):
-    """View для создания контракта."""
-
+class ContractMixin:
+    """Mixin для одинаковых полей в CBV для модели Contract."""
     model = Contract
-    template_name = 'contracts/contracts-create.html'
     form_class = ContractForm
+    success_url = reverse_lazy('contracts:list')
+    
+    
+class ContractCreateView(ContractMixin, PermissionRequiredMixin, CreateView):
+    """View для создания контракта."""
+    template_name = 'contracts/contracts-create.html'
     permission_required = 'contracts.add_contract'
     
     
-class ContractDetailView(PermissionRequiredMixin, DetailView):
+class ContractDetailView(ContractMixin, PermissionRequiredMixin, DetailView):
     """View для просмотра контракта."""
-
-    model = Contract
     template_name = 'contracts/contracts-detail.html'
     permission_required = 'contracts.view_contract'
 
 
-class ContractListView(PermissionRequiredMixin, ListView):
+class ContractListView(ContractMixin, PermissionRequiredMixin, ListView):
     """View для просмотра всех контрактов."""
-
-    model = Contract
     template_name = 'contracts/contracts-list.html'
     context_object_name = 'contracts'
     permission_required = 'contracts.view_contract'
 
     
-class ContractUpdateView(PermissionRequiredMixin, UpdateView):
+class ContractUpdateView(ContractMixin, PermissionRequiredMixin, UpdateView):
     """View для обновления контракта."""
-
-    model = Contract
     template_name = 'contracts/contracts-edit.html'
-    form_class = ContractForm
     permission_required = 'contracts.change_contract'
 
     
-class ContractDeleteView(PermissionRequiredMixin, DeleteView):
+class ContractDeleteView(ContractMixin, PermissionRequiredMixin, DeleteView):
     """View для удаления контракта."""
-
-    model = Contract
     template_name = 'contracts/contracts-delete.html'
-    success_url = reverse_lazy('contracts:delete')
     permission_required = 'contracts.delete_contract'

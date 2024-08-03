@@ -6,53 +6,46 @@ from .models import Advertisement
 from .forms import AdvertisementForm
 
 
-class AdvertisementCreateView(PermissionRequiredMixin, CreateView):
-    """View для создания рекламы."""
-    
+class AdvertisementMixin:
+    """Mixin для одинаковых полей в CBV для модели Advertisement."""
     model = Advertisement
-    template_name = 'ads/ads-create.html'
     form_class = AdvertisementForm
+    success_url = reverse_lazy('ads:list')
+    
+    
+class AdvertisementCreateView(AdvertisementMixin, PermissionRequiredMixin, CreateView):
+    """View для создания рекламы."""
+    template_name = 'ads/ads-create.html'
     permission_required = 'ads.add_advertisement'
     
-
-class AdvertisementDetailView(PermissionRequiredMixin, DetailView):
-    """View для просмотра рекламы."""
     
-    model = Advertisement
+class AdvertisementDetailView(AdvertisementMixin, PermissionRequiredMixin, DetailView):
+    """View для просмотра рекламы."""
     template_name = 'ads/ads-detail.html'
     permission_required = 'ads.view_advertisement'
     
     
-class AdvertisementListView(PermissionRequiredMixin, ListView):
+class AdvertisementListView(AdvertisementMixin, PermissionRequiredMixin, ListView):
     """View для просмотра всех реклам."""
-    
-    model = Advertisement
     template_name = 'ads/ads-list.html'
     context_object_name = 'ads'
     permission_required = 'ads.view_advertisement'
 
 
-class AdvertisementUpdateView(PermissionRequiredMixin, UpdateView):
+class AdvertisementUpdateView(AdvertisementMixin, PermissionRequiredMixin, UpdateView):
     """View для обновления рекламы."""
-    
-    model = Advertisement
     template_name = 'ads/ads-edit.html'
-    form_class = AdvertisementForm
     permission_required = 'ads.change_advertisement'
 
 
-class AdvertisementDeleteView(PermissionRequiredMixin, DeleteView):
+class AdvertisementDeleteView(AdvertisementMixin, PermissionRequiredMixin, DeleteView):
     """View для удаления рекламы."""
-    
-    model = Advertisement
     template_name = 'ads/ads-delete.html'
-    success_url = reverse_lazy('ads:list')
     permission_required = 'ads.delete_advertisement'
 
 
 class AdvertisementStatisticView(ListView):
     """View для просмотра статистики рекламных компаний."""
-
     template_name = 'ads/ads-statistic.html'
     context_object_name = 'ads'
     

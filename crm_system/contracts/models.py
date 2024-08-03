@@ -5,7 +5,6 @@ from crm_system.settings import MEDIA_ROOT
 
 class Contract(models.Model):
     """Модель контракта с клиентом."""
-    
     class Meta:
         ordering = ['-start_date']
     

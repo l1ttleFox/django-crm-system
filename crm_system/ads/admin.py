@@ -26,3 +26,4 @@ class AdvertisementAdmin(admin.ModelAdmin):
     inlines = [
         LeadInline
     ]
+    

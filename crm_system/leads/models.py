@@ -4,7 +4,6 @@ from ads.models import Advertisement
 
 class Lead(models.Model):
     """Модель потенциального клиента, привлеченного рекламной кампанией."""
-    
     class Meta:
         ordering = ['pk']
     

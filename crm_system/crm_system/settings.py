@@ -84,12 +84,16 @@ WSGI_APPLICATION = 'crm_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DB_TABLE_NAME = 'crm_system'
+DB_USER = 'postgres'
+DB_PASSWORD = 'postgres'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'crm_system',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': DB_TABLE_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
         'POST': '5432'
     }

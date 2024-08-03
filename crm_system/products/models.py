@@ -3,7 +3,6 @@ from django.db import models
 
 class Product(models.Model):
     """Модель услуги, предоставляемой компанией."""
-    
     class Meta:
         ordering = ['pk']
     

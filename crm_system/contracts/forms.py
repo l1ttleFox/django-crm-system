@@ -4,7 +4,6 @@ from .models import Contract
 
 class ContractForm(ModelForm):
     """Форма для модели контракта."""
-    
     class Meta:
         model = Contract
         fields = [

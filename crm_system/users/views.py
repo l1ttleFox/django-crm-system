@@ -8,14 +8,12 @@ from customers.models import Customer
 
 class UserLoginView(LoginView):
     """View для авторизации пользователя."""
-
     form_class = AuthenticationForm
     template_name = 'registration/login.html'
 
 
 class IndexView(TemplateView):
     """View для главной страницы сайта с основной статистикой."""
-
     template_name = 'users/index.html'
     
     def get_context_data(self, **kwargs):
