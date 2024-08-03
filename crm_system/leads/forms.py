@@ -3,6 +3,8 @@ from .models import Lead
 
 
 class LeadForm(ModelForm):
+    """Форма для модели потенциального клиента."""
+    
     class Meta:
         model = Lead
         fields = [

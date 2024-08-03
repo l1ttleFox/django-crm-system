@@ -4,6 +4,8 @@ from contracts.models import Contract
 
 
 class Customer(models.Model):
+    """Модель активного клиента."""
+    
     class Meta:
         ordering = ['pk']
     

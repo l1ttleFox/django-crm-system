@@ -3,6 +3,8 @@ from .models import Product
 
 
 class ProductForm(ModelForm):
+    """Форма для модели услуги, предоставляемой компанией."""
+    
     class Meta:
         model = Product
         fields = [

@@ -3,6 +3,8 @@ from products.models import Product
 
 
 class Advertisement(models.Model):
+    """Модель рекламной кампании."""
+    
     class Meta:
         ordering = ['pk']
     

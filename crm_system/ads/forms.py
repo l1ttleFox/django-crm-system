@@ -3,6 +3,8 @@ from .models import Advertisement
 
 
 class AdvertisementForm(ModelForm):
+    """Форма для модели рекламы."""
+    
     class Meta:
         model = Advertisement
         fields = [
